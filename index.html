@@ -2,32 +2,46 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="https://unpkg.com/vue"></script>
-    <script type="text/javascript" src="src/vue-tabs.js"></script>
+		<script type="text/javascript" src="/src/vue.js"></script>
+		<script type="text/javascript" src="/src/vue-tabs.js"></script>
+		<link rel="stylesheet" type="text/css" href="/src/bootstrap.min.css"></link>
+		<link rel="stylesheet" type="text/css" href="/src/vue-tabs.min.css">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Program Schedule Virginia Pride Running Club</title>
   </head>
   <body>
 	<div id="app">
 	<h1>{{ schedule }}</h1>
-	  <tabs>
-	    <tab v-for="program in programs" :title="program">
+	  <vue-tabs>
+	    <v-tab v-for="program in programs" :title="program">
 	      <p>Schedule for {{ program }}</p>
-	    </tab>
-	  </tabs>
+	    </v-tab>
+	  </vue-tabs>
 	</div>
 		<script>
 		var app = new Vue({
 		  el: '#app',
 		  data: {
 		  	schedule : 'Program Schedule',
-		  	programs : ['Cross Country', 'Fall Speed & Agility Training', 'Hurdles & Long Jump', 'Track & Field Indoor', 'Track & Field Outdoor']
+		  	programs : []
 		  },
 		  created: function() {
-		  	console.log('Vue instance has been created');
-		  }
+				console.log('Vue instance has been created');
+				my = this;
+				axios.get('/src/data.json')
+					.then(function(response){
+						console.log(response.data);
+						console.log(this);
+						my.programs = response.data.events;
+					})
+					.catch(function(error){
+						console.log(error);
+					})
+			}
 		});
 		</script>
 		<style type="text/css">
+		/*
 		  .tabs > ul {
 		  overflow: hidden;
 		  font: bold 1em Verdana, sans-serif;
@@ -58,6 +72,7 @@
 		  color: #333;
 		  background: #f5f7fa;
 		}
+		*/
 		</style>
   </body>
 </html>
