@@ -1,0 +1,19 @@
+{
+  "name": "vue-tabs-murpg",
+  "version": "1.0.0",
+  "description": "This is a demo of Vue and Axios. The plan is to develop a ContentBox module that can be installed using a widget.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/murpg/vue-tabs/tree/rest"
+  },
+  "keywords": [
+    "vue-tabs",
+    "axios"
+  ],
+  "author": "George Murphy",
+  "license": "MIT"
+}
